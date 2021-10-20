@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { calcServiceUrl } from "./config/servicesUrl";
 import axios from "axios";
@@ -11,6 +11,8 @@ function App() {
   const calcularSoma = () => {
     axios.post(`${calcServiceUrl}/sum`, { a, b }).then(({ data }) => setResultado(data));
   };
+
+  useEffect(calcularSoma, [a, b]);
 
   return (
     <>
