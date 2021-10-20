@@ -14,8 +14,8 @@ function App() {
 
   return (
     <>
-      A: <input type="text" value={a} onChange={(event) => setA(event.target.value)} />
-      B: <input type="text" value={b} onChange={(event) => setB(event.target.value)} />
+      Valor A: <input type="text" value={a} onChange={(event) => setA(event.target.value)} />
+      Valor B: <input type="text" value={b} onChange={(event) => setB(event.target.value)} />
       Resultado: <input type="text" value={resultado}  readOnly />
       <button onClick={calcularSoma}>Calcular</button>
     </>
