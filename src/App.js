@@ -6,20 +6,28 @@ import axios from "axios";
 function App() {
   const [a, setA] = useState(5);
   const [b, setB] = useState(3);
-  const [resultado, setResultado] = useState(``);
+  const [resultado, setResultado] = useState();
 
   const calcularSoma = () => {
-    axios.post(`${calcServiceUrl}/sum`, { a, b }).then(({ data }) => setResultado(data));
+    setTimeout(() => {
+      axios.post(`${calcServiceUrl}/sum`, { a, b }).then(({ data }) => setResultado(data));
+    }, 5000);
   };
 
   useEffect(calcularSoma, [a, b]);
 
   return (
     <>
-      Valor A: <input type="text" value={a} onChange={(event) => setA(event.target.value)} />
-      Valor B: <input type="text" value={b} onChange={(event) => setB(event.target.value)} />
-      Resultado: <input type="text" value={resultado}  readOnly />
-      <button onClick={calcularSoma}>Calcular</button>
+      {resultado ? (
+        <div>
+          Valor A: <input type="text" value={a} onChange={(event) => setA(event.target.value)} />
+          Valor B: <input type="text" value={b} onChange={(event) => setB(event.target.value)} />
+          Resultado: <input type="text" value={resultado} readOnly />
+          <button onClick={calcularSoma}>Calcular</button>
+        </div>
+      ) : (
+        <div>img carregando.... aguarde</div>
+      )}
     </>
   );
 }
